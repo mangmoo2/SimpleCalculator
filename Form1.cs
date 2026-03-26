@@ -43,7 +43,7 @@ namespace SimpleCalculator
             {
                 case "+": result = num1 + num2; break;
                 case "-": result = num1 - num2; break; // 과제 2
-                case "*": result = num1 * num2; break; // 과제 2
+                case "x": result = num1 * num2; break; // 과제 2
                 case "÷": result = num1 / num2; break; // 과제 2
             }
             // 결과값을 소수점 5자리까지만 반올림

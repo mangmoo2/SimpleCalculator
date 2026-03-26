@@ -60,9 +60,9 @@
             label1.ForeColor = SystemColors.Highlight;
             label1.Location = new Point(40, 29);
             label1.Name = "label1";
-            label1.Size = new Size(220, 37);
+            label1.Size = new Size(231, 37);
             label1.TabIndex = 0;
-            label1.Text = "SimpleCalculato";
+            label1.Text = "SimpleCalculator";
             label1.Click += label1_Click;
             // 
             // TotalDisplay
@@ -105,7 +105,7 @@
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 6;
-            button3.Text = "/";
+            button3.Text = "÷";
             button3.UseVisualStyleBackColor = true;
             button3.Click += Op_Click;
             // 
@@ -125,7 +125,7 @@
             button5.Name = "button5";
             button5.Size = new Size(75, 23);
             button5.TabIndex = 10;
-            button5.Text = "*";
+            button5.Text = "x";
             button5.UseVisualStyleBackColor = true;
             button5.Click += Op_Click;
             // 
