@@ -52,6 +52,7 @@
             button19 = new Button();
             button20 = new Button();
             pictureBox1 = new PictureBox();
+            listBoxHistory = new ListBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -344,12 +345,23 @@
             pictureBox1.TabIndex = 23;
             pictureBox1.TabStop = false;
             // 
+            // listBoxHistory
+            // 
+            listBoxHistory.FormattingEnabled = true;
+            listBoxHistory.Location = new Point(418, 23);
+            listBoxHistory.Name = "listBoxHistory";
+            listBoxHistory.Size = new Size(369, 424);
+            listBoxHistory.TabIndex = 24;
+            listBoxHistory.Click += listBoxHistory_DoubleClick;
+            listBoxHistory.SelectedIndexChanged += listBoxHistory_SelectedIndexChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MistyRose;
-            ClientSize = new Size(398, 481);
+            ClientSize = new Size(820, 481);
+            Controls.Add(listBoxHistory);
             Controls.Add(button17);
             Controls.Add(button18);
             Controls.Add(button19);
@@ -408,5 +420,6 @@
         private Button button19;
         private Button button20;
         private PictureBox pictureBox1;
+        private ListBox listBoxHistory;
     }
 }

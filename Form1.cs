@@ -35,24 +35,34 @@ namespace SimpleCalculator
         }
         private void Result_Click(object sender, EventArgs e)
         {
+            // 1. 피연산자 num2 가져오기
             num2 = double.Parse(CurrentDisplay.Text);
-            // 문자열을 숫자로 변환
-            double result = num1 + num2;
+            double result = 0;
 
-            switch (op)    // 연산의 계산 
+            // 2. 연산 수행
+            switch (op)
             {
                 case "+": result = num1 + num2; break;
-                case "-": result = num1 - num2; break; // 과제 2
-                case "x": result = num1 * num2; break; // 과제 2
-                case "÷": result = num1 / num2; break; // 과제 2
+                case "-": result = num1 - num2; break;
+                case "x": result = num1 * num2; break;
+                case "÷": result = num1 / num2; break;
             }
-            // 결과값을 소수점 5자리까지만 반올림
-            double roundedResult = Math.Round(result, 5);
-            // 상단 텍스트박스: 마지막에 " = 결과" 추가
-            TotalDisplay.Text += " = " + result.ToString();
 
-            // 하단 텍스트박스: 기존 내용을 지우고 최종 결과값만 표시
-            CurrentDisplay.Text = result.ToString();    // INT를 STINRG으로 다시 변환
+            // 3. 결과값 반올림 (선택사항: 아까 만드신 roundedResult 변수 활용)
+            double roundedResult = Math.Round(result, 2);
+
+            // 4. [수정 포인트] 결과 출력 및 히스토리 저장
+            // 상단 식에 " = 결과"를 딱 한 번만 추가합니다.
+            string historyEntry = TotalDisplay.Text + " = " + roundedResult.ToString();
+
+            TotalDisplay.Text = historyEntry;           // 상단 식 업데이트
+            CurrentDisplay.Text = roundedResult.ToString(); // 하단 결과창 업데이트
+
+            // 5. 리스트박스에 기록 추가
+            listBoxHistory.Items.Add(historyEntry);
+
+            // 6. 다음 계산을 위해 연산자 초기화
+            op = "";
         }
 
         private void Op_Click(object sender, EventArgs e)
@@ -152,6 +162,30 @@ namespace SimpleCalculator
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBoxHistory_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBoxHistory.SelectedItem != null)
+            {
+                string selectedItem = listBoxHistory.SelectedItem.ToString();
+
+                // "식 = 결과값" 형태에서 '=' 이후의 값만 추출
+                string[] parts = selectedItem.Split('=');
+                if (parts.Length > 1)
+                {
+                    string lastResult = parts[1].Trim();
+
+                    // 현재 입력창에 다시 넣어주기
+                    CurrentDisplay.Text = lastResult;
+                    TotalDisplay.Text = lastResult; // 새 계산을 위해 상단도 동기화
+                }
+            }
+        }
+
+        private void listBoxHistory_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
