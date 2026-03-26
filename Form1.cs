@@ -42,9 +42,9 @@ namespace SimpleCalculator
             switch (op)    // 연산의 계산 
             {
                 case "+": result = num1 + num2; break;
-                case "-": result = num1 - num2; break;
-                case "x": result = num1 * num2; break;
-                case "÷": result = num1 / num2; break;
+                case "-": result = num1 - num2; break; // 과제 2
+                case "*": result = num1 * num2; break; // 과제 2
+                case "÷": result = num1 / num2; break; // 과제 2
             }
 
             // 상단 텍스트박스: 마지막에 " = 결과" 추가
