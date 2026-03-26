@@ -120,9 +120,9 @@ namespace SimpleCalculator
             // 이미 소수점이 있는지 확인
             if (!CurrentDisplay.Text.Contains("."))
             {
-                    CurrentDisplay.Text += ".";
-                    TotalDisplay.Text += ".";
-                
+                CurrentDisplay.Text += ".";
+                TotalDisplay.Text += ".";
+
             }
         }
 
@@ -149,6 +149,11 @@ namespace SimpleCalculator
 
             // 하단 창 업데이트
             CurrentDisplay.Text = newVal;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
