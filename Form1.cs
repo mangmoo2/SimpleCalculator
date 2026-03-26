@@ -113,5 +113,16 @@ namespace SimpleCalculator
 
             }
         }
+
+        private void Dot_Click(object sender, EventArgs e)
+        {
+            // 이미 소수점이 있는지 확인
+            if (!CurrentDisplay.Text.Contains("."))
+            {
+                    CurrentDisplay.Text += ".";
+                    TotalDisplay.Text += ".";
+                
+            }
+        }
     }
 }

@@ -257,6 +257,7 @@
             button18.TabIndex = 21;
             button18.Text = ".";
             button18.UseVisualStyleBackColor = true;
+            button18.Click += Dot_Click;
             // 
             // button19
             // 
