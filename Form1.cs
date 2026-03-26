@@ -67,5 +67,51 @@ namespace SimpleCalculator
             // 연산자가 눌렸음을 표시
             OpClicked = true;
         }
+        private void C_Click(object sender, EventArgs e) // C (완전 초기화)
+        {
+            num1 = 0;
+            num2 = 0;
+            op = "";
+            OpClicked = false;
+            TotalDisplay.Text = "";
+            CurrentDisplay.Text = "";
+        }
+
+        private void CE_Click(object sender, EventArgs e) //CE (현재 입력중인 숫자만 초기화)
+        {
+            string current = CurrentDisplay.Text; // 상단 식에서 현재 입력된 숫자만큼 삭제
+            if (string.IsNullOrEmpty(current)) return;
+
+            int lengthToRemove = current.Length;
+            if (TotalDisplay.Text.Length >= lengthToRemove)
+            {
+                TotalDisplay.Text = TotalDisplay.Text.Substring(0, TotalDisplay.Text.Length - lengthToRemove);
+            }
+
+            // 2. 하단 창 비우기
+            CurrentDisplay.Text = "";
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void Del_Click(object sender, EventArgs e)
+        {
+            // 하단 창에 지울 글자가 있는지 체크
+            if (CurrentDisplay.Text.Length > 0)
+            {
+                // 하단 창 마지막 글자 삭제
+                CurrentDisplay.Text = CurrentDisplay.Text.Substring(0, CurrentDisplay.Text.Length - 1);
+
+                // 상단 창에 지울 글자가 있는지 체크
+                // 상단 창 마지막 글자 삭제 
+                if (TotalDisplay.Text.Length > 0)
+                {
+                    TotalDisplay.Text = TotalDisplay.Text.Substring(0, TotalDisplay.Text.Length - 1);
+                }
+
+            }
+        }
     }
 }
