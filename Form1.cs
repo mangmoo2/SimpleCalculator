@@ -2,8 +2,8 @@ namespace SimpleCalculator
 {
     public partial class Form1 : Form
     {
-        int num1 = 0;      // 첫 번째 숫자 저장
-        int num2 = 0;      // 두 번째 숫자 저장
+        double num1 = 0;      // 첫 번째 숫자 저장     // 소수점으로 인한 계산에 의해 int 함수에서 double 함수로 변경
+        double num2 = 0;      // 두 번째 숫자 저장    // 소수점으로 인한 계산에 의해 int 함수에서 double 함수로 변경
         string op = "";    // 선택한 연산자 저장
         bool OpClicked = false; // 연산자 눌렀는지 확인
 
@@ -35,9 +35,9 @@ namespace SimpleCalculator
         }
         private void Result_Click(object sender, EventArgs e)
         {
-            num2 = int.Parse(CurrentDisplay.Text);
+            num2 = double.Parse(CurrentDisplay.Text);
             // 문자열을 숫자로 변환
-            int result = num1 + num2;
+            double result = num1 + num2;
 
             switch (op)    // 연산의 계산 
             {
@@ -46,7 +46,8 @@ namespace SimpleCalculator
                 case "*": result = num1 * num2; break; // 과제 2
                 case "÷": result = num1 / num2; break; // 과제 2
             }
-
+            // 결과값을 소수점 5자리까지만 반올림
+            double roundedResult = Math.Round(result, 5);
             // 상단 텍스트박스: 마지막에 " = 결과" 추가
             TotalDisplay.Text += " = " + result.ToString();
 
@@ -59,7 +60,7 @@ namespace SimpleCalculator
             Button btn = (Button)sender;
 
             // 하단 창에 적힌숫자를 첫번째 숫자로 저장
-            num1 = int.Parse(CurrentDisplay.Text);       // STRING 데이터 INT로 변환
+            num1 = double.Parse(CurrentDisplay.Text);       // STRING 데이터 INT로 변환
             // 어떤 연산자인지 저장
             op = btn.Text;
             // 상단 창에 연산자 표시 추가
@@ -123,6 +124,31 @@ namespace SimpleCalculator
                     TotalDisplay.Text += ".";
                 
             }
+        }
+
+        private void Negate_Click(object sender, EventArgs e)
+        {
+            // 입력된 값이 있는지 확인
+            if (string.IsNullOrEmpty(CurrentDisplay.Text) || CurrentDisplay.Text == "0") return;
+
+            // 현재 숫자를 변환해서 -1 곱하기
+            decimal tempNum = decimal.Parse(CurrentDisplay.Text);
+            tempNum = tempNum * -1;
+
+            // 상단 창 업데이트 
+            string oldVal = CurrentDisplay.Text;
+            string newVal = tempNum.ToString();
+
+            // 식의 맨 마지막에 있는 현재 숫자만 새 숫자로 교체
+            int lastIndex = TotalDisplay.Text.LastIndexOf(oldVal);
+            if (lastIndex != -1)
+            {
+                // 기존 숫자를 지우고 부호가 바뀐 숫자를 삽입
+                TotalDisplay.Text = TotalDisplay.Text.Remove(lastIndex, oldVal.Length).Insert(lastIndex, newVal);
+            }
+
+            // 하단 창 업데이트
+            CurrentDisplay.Text = newVal;
         }
     }
 }

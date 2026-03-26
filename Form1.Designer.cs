@@ -277,6 +277,7 @@
             button20.TabIndex = 19;
             button20.Text = "+/-";
             button20.UseVisualStyleBackColor = true;
+            button20.Click += Negate_Click;
             // 
             // Form1
             // 
